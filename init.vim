@@ -3,7 +3,7 @@
 set nocompatible
 
 " =============== Plugin Management ==================
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin()
 
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
@@ -17,6 +17,8 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'habamax/vim-sendtoterm'
 
 call plug#end()
 
@@ -126,6 +128,7 @@ let g:gruvbox_contast_dark = 'hard'
 colorscheme gruvbox
 
 highlight highlighter guibg=SlateBlue
+
 " ================ Turn Off Swap Files ==============
 
 set noswapfile
@@ -180,6 +183,8 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.elf,*.lst,*.map
 set wildignore+=*.a,*.pub,*.ilk
+set wildignore+=*.out
+set wildignore+=tags
 
 " ================ Scrolling ========================
 
@@ -194,14 +199,18 @@ set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 
+
 " ================ Mappings ===========================
+
+" Paste from OS
+noremap <c-P> :set paste<cr>o<c-r>"<esc>:set nopaste<cr>
 
 " ESC Terminal Mode
 tnoremap <Esc> <c-\><c-n>
 " Save session
-map <F8> :mksession! .\_vim_session<cr>
+map <F8> :mksession! .\\_vim_session<cr>
 " Restore session
-map <F9> :source .\_vim_session<cr>
+map <F9> :source .\\_vim_session<cr>
 
 "Set Leader character to space
 let mapleader = "\<Space>"
@@ -302,8 +311,29 @@ noremap <leader>= ggVG=
 " Get C function prototypes and put them in quickfix
 noremap <leader>cgfp :vimgrep /^.* .*(.*)\n{/j %<cr>
 
+" Vertial Tag split to right
+noremap <c-w>v] <c-w>v<c-w>l<c-]>
+
+" Vertial Tag split to left
+noremap <c-w>v[ <c-w>v<c-]>
+
+" Horizontal Tag split down
+noremap <c-w>h[ <c-w>s<c-w>j<c-]>
+
+" Horizontal Tag split up
+noremap <c-w>h] <c-w>s<c-]>
+
+" Grab tag
+noremap <leader>[ "tyiw
+
+" Drop tag
+noremap <leader>] :tag <c-r>t<cr>
+
 " Easier Easymotion
 map <leader> <Plug>(easymotion-prefix)
+
+" Search for visual selection
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " ================ Command Mappings ==================
 " Edit my vimrc
