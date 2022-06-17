@@ -19,6 +19,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'habamax/vim-sendtoterm'
+Plug 'peterhoeg/vim-qml'
 
 call plug#end()
 
@@ -110,11 +111,11 @@ set hidden
 " Set unix line endings
 set ff=unix
 
-set complete+=kspell
+" set complete+=kspell
+set complete=.,w,b,u
 set completeopt=menuone,longest,preview
 "set completeopt=menuone,preview
 set shortmess+=c
-"set complete-=i
 
 set guioptions-=m "turn off menu bar
 set guioptions-=T "turn off tool bar
@@ -300,7 +301,7 @@ noremap <leader>ip ciw<c-r>0<esc>
 "noremap <leader>ssd :%norm df"<cr>:%norm $x<cr>
 
 ""Align Block
-"noremap <leader>ab ms{mb}me`s:'b,'eAlign<cr>
+noremap <leader>ab ms{mb}me`s:'b,'eAlign<cr>
 
 " Close buffer and go to the last buffer
 noremap <leader>d :b#<cr>:bdelete #<cr>:bn<cr>:bp<cr>
@@ -328,6 +329,9 @@ noremap <leader>[ "tyiw
 
 " Drop tag
 noremap <leader>] :tag <c-r>t<cr>
+
+" Easiest Easymotion
+nmap s <Plug>(easymotion-s)
 
 " Easier Easymotion
 map <leader> <Plug>(easymotion-prefix)
@@ -492,6 +496,9 @@ augroup vimrc
   autocmd!
 
   autocmd BufWritePre   * :call Trim_whitespace()
-  autocmd BufWritePost  * :call jobstart('ctags -R .')
+  autocmd BufWritePost  *.c :call jobstart('ctags -R .')
+  autocmd BufWritePost  *.cpp :call jobstart('ctags -R .')
+  autocmd BufWritePost  *.h :call jobstart('ctags -R .')
+  autocmd BufWritePost  *.py :call jobstart('ctags -R .')
   autocmd BufEnter      * :call Set_fileformatting()
 augroup END
