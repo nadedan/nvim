@@ -219,8 +219,9 @@ let mapleader = "\<Space>"
 "Faster file write
 nnoremap <leader>w :w<cr>
 
-"Use jj to leave insert mode
-inoremap jj <esc>
+"Use jk or kj to leave insert mode
+inoremap jk <esc>
+inoremap kj <esc>
 
 " Explorer in this split
 nnoremap <leader>ee :Explore<cr>
