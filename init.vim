@@ -87,6 +87,7 @@ nmap ga <Plug>(EasyAlign)
 
 " ================ General Config ====================
 
+set mouse=                      "Disable Mouse
 set path+=**
 set number                      "Line numbers are good
 set relativenumber
@@ -208,6 +209,16 @@ noremap <c-P> :set paste<cr>o<c-r>"<esc>:set nopaste<cr>
 
 " ESC Terminal Mode
 tnoremap <Esc> <c-\><c-n>
+
+" Terminal Mode Register Paste
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
+" Terminal Mode Window Change
+tnoremap <c-h> <C-\><C-N><c-w><c-h>
+tnoremap <c-j> <C-\><C-N><c-w><c-j>
+tnoremap <c-k> <C-\><C-N><c-w><c-k>
+tnoremap <c-l> <C-\><C-N><c-w><c-l>
+
 " Save session
 map <F8> :mksession! .\\_vim_session<cr>
 " Restore session
