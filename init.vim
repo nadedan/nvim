@@ -20,6 +20,7 @@ Plug 'junegunn/gv.vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'habamax/vim-sendtoterm'
 Plug 'peterhoeg/vim-qml'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 
 call plug#end()
 
@@ -85,9 +86,20 @@ nmap ga <Plug>(EasyAlign)
   let g:netrw_bufsettings="noma nomod nonu nobl nowrap ro rnu"
 " ***** END netrw *****
 
+" *****  DoxygenToolkit    *****
+  let g:DoxygenToolkit_briefTag_pre="@Brief   "
+  let g:DoxygenToolkit_briefTag_funcName="yes"
+  let g:DoxygenToolkit_paramTag_pre="@Param   "
+  let g:DoxygenToolkit_returnTag=   "@Returns "
+  let g:DoxygenToolkit_blockHeader="=========================================================================="
+  let g:DoxygenToolkit_blockFooter="=========================================================================="
+  let g:DoxygenToolkit_authorName="Daniel Nadeau"
+  let g:DoxygenToolkit_licenseTag=""
+" ***** END DoxygenToolkit *****
+
+
 " ================ General Config ====================
 
-set mouse=                      "Disable Mouse
 set path+=**
 set number                      "Line numbers are good
 set relativenumber
@@ -231,8 +243,12 @@ let mapleader = "\<Space>"
 nnoremap <leader>w :w<cr>
 
 "Use jk or kj to leave insert mode
+" Just fat-finger j and k to leave insert
 inoremap jk <esc>
 inoremap kj <esc>
+
+" Insert JIRA Tag
+inoremap jt <esc>:call JIRA_Tag()<cr>i
 
 " Explorer in this split
 nnoremap <leader>ee :Explore<cr>
@@ -316,7 +332,7 @@ noremap <leader>ip ciw<c-r>0<esc>
 noremap <leader>ab ms{mb}me`s:'b,'eAlign<cr>
 
 " Close buffer and go to the last buffer
-noremap <leader>d :b#<cr>:bdelete #<cr>:bn<cr>:bp<cr>
+noremap <leader>d :b#<cr>:bdelete! #<cr>:bn<cr>:bp<cr>
 
 " Reformat file
 noremap <leader>= ggVG=
@@ -498,6 +514,15 @@ function! Set_fileformatting()
   set textwidth=80
 
 endfunction
+
+function! JIRA_Tag()
+
+  let l:branch_name = system("git rev-parse --abbrev-ref HEAD")
+  let b:issue_id = substitute(branch_name, '^\([^-]\+-\d\+\)*-*.*', '\1', '')
+  call feedkeys(b:issue_id . ': ')
+
+endfunction
+
 
 "=========================
 "call timer_start(100, function('NMode'), {'repeat': -1})
