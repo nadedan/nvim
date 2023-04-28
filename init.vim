@@ -100,6 +100,13 @@ nmap ga <Plug>(EasyAlign)
 
 " ================ General Config ====================
 
+" Use Powershell as the terminal
+let &shell = has('win32') ? 'powershell' : 'pwsh'
+let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+set shellquote= shellxquote=
+
 set path+=**
 set number                      "Line numbers are good
 set relativenumber
@@ -323,10 +330,10 @@ noremap <leader>yo ggVG"+y:q!<cr>
 noremap <leader>ip ciw<c-r>0<esc>
 
 "" sql_string add. Wraps the whole buffer to build a sql_string
-"noremap <leader>ssa :%norm 0isql_str = sql_str & vbLf & "<cr>:%norm A"<cr>
+noremap <leader>ssa :%s/"/""/g<cr>:%norm 0iret_sql_str = ret_sql_str & vbLf & "<cr>:%norm A"<cr>
 "
 "" sql_string delete. Removes the sql_string wrapper
-"noremap <leader>ssd :%norm df"<cr>:%norm $x<cr>
+noremap <leader>ssd :%norm df"<cr>:%norm $x<cr>:%s/""/"/g<cr>
 
 ""Align Block
 noremap <leader>ab ms{mb}me`s:'b,'eAlign<cr>
