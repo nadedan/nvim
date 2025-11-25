@@ -1,0 +1,2 @@
+
+require("plugins.easy-motion")

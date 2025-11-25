@@ -4,3 +4,4 @@ g.mapleader      = " "
 g.maplocalleader = " "
 
 require("config")
+require("plugins")
