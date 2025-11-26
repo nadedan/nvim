@@ -40,6 +40,9 @@ vim.api.nvim_create_autocmd("FileType", {
       root_dir = vim.fs.dirname(vim.fs.find({ "go.mod", ".git" }, { upward = true })[1]),
       capabilities = capabilities,
     })
+    vim.bo.tabstop    = 4
+    vim.bo.shiftwidth = 4
+    vim.bo.softtabstop = 4
   end,
 })
 
