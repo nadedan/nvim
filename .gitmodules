@@ -1,3 +1,21 @@
 [submodule "pack/plugins/start/vim-easymotion"]
 	path = pack/plugins/start/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "pack/plugins/nvim-lspconfig"]
+	path = pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "pack/plugins/nvim-cmp"]
+	path = pack/plugins/start/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp
+[submodule "pack/plugins/cmp-nvim-lsp"]
+	path = pack/plugins/start/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp
+[submodule "pack/plugins/cmp-buffer"]
+	path = pack/plugins/start/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer
+[submodule "pack/plugins/cmp-path"]
+	path = pack/plugins/start/cmp-path
+	url = https://github.com/hrsh7th/cmp-path
+[submodule "pack/colors/start/gruvbox.nvim"]
+	path = pack/colors/start/gruvbox.nvim
+	url = git@github.com:gruvbox-community/gruvbox

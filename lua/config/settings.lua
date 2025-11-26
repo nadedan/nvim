@@ -30,8 +30,6 @@ end
 -----------------------------------------------------------------
 -- Appearance & UI
 -----------------------------------------------------------------
-o.termguicolors = true
-o.background    = "dark"
 
 wo.number         = true
 wo.relativenumber = true
@@ -52,10 +50,6 @@ vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "LineNr",       { bg = "NONE", fg = "#928374" })
 vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE", fg = "#fabd2f", bold = true })
 
--- Custom statusline (fixed & safe)
---o.statusline = [[%#StatusLine#%
---  <%{&ff}:%{&fenc != '' ? &fenc : &enc}:%Y │ %f%m │ %
---  %{strftime('%y/%m/%d %H:%M')} │ %= %l/%L,%c%V %P]]
 
 -----------------------------------------------------------------
 -- Cursor & bells
